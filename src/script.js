@@ -52,7 +52,6 @@ for(let i =0; i < shopItems.length; i++) {
 
 function buyItem(item, score)
 {
-    console.log(item)
     let powerUpPrice = powerUps[item][2]
     if(score >= powerUpPrice) {
         score -= powerUpPrice
