@@ -62,7 +62,7 @@ function buyItem(item, score)
         score -= powerUpPrice
         powerUps[item][0] += 1
         clicksPerSecond = getClicksPerSecond(powerUps)
-        clicksPerSecondText.textContent = clicksPerSecond + ' CPS'
+        clicksPerSecondText.textContent = minimizeNumber(clicksPerSecond) + ' CPS'
         updateShopPrices()
     }
     return score
@@ -74,10 +74,10 @@ function updateShopPrices() {
     let price = parseInt(priceIncrementExpoent)
     for(powerUp of powerUpList) {
         powerUps[powerUp.key][2] += parseInt(price / 100 * powerUps[powerUp.key][2])
-        shopPrices[index].textContent = powerUps[powerUp.key][2]
+        shopPrices[index].textContent = minimizeNumber(powerUps[powerUp.key][2])
         index++;
     }
-    priceIncrementExpoent += 0.2
+    priceIncrementExpoent += 0.1
     priceIncrementExpoent = parseFloat(priceIncrementExpoent.toFixed(1))
 }
 
@@ -99,7 +99,7 @@ function getClicksPerSecond(powerUps) {
 }
 
 function minimizeNumber(num){
-    if(num >= 1000 && num < 100_000)
+    if(num >= 1000 && num < 1_000_000)
     {
         return (num / 1000).toFixed(1)+'K'
     } 
