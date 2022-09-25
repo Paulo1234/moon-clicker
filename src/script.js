@@ -10,35 +10,40 @@ let powerUpList = [
         name: 'Auto Click',
         description: 'Auto click moon 1 time per second'
     }, {
+        key: 'powerful_click',
+        name: 'Powerful click',
+        description: 'Improve your mouse click power'
+    }, {
         key: 'astroneer',
         name: 'Astroneer',
-        description: 'The astroneer will explore the moon adding 2 CPS'
+        description: 'The astroneer will explore the moon adding 5 CPS'
     }, {
         key: 'cientist',
         name: 'Cientist',
-        description: 'A smart cientist that improves moon exploration, adding 5 CPS'
+        description: 'A smart cientist that improves moon exploration, adding 20 CPS'
     }
 ]
 
 const powerUps = {
     auto_click: [0, 1, 10],
-    astroneer: [0, 2, 100],
-    cientist: [0, 5, 500]
+    astroneer: [0, 5, 100],
+    cientist: [0, 20, 500],
+    powerful_click: [0, 0, 50],
 }
 let score = 0;
 let clicksPerSecond = 0
 let priceIncrementExpoent = 1
 
 moon.addEventListener('click', () => {
-    score += 1
-    moon.textContent = score
+    score += powerUps.powerful_click[0] + 1
+    moon.textContent = minimizeNumber(score)
 })
 
 // auto click
 for(let i =0; i < shopItems.length; i++) {
     shopItems[i].addEventListener('click', () => {
         score = buyItem(powerUpList[i].key, score)
-        moon.textContent = score
+        moon.textContent = minimizeNumber(score)
     })
     shopItems[i].addEventListener('mouseover', () => {
         popUp.style.visibility = 'visible'
@@ -79,7 +84,7 @@ function updateShopPrices() {
 
 function game(){
     score += clicksPerSecond
-    moon.textContent = score
+    moon.textContent = minimizeNumber(score)
     window.setTimeout(game, 1000)
 }
 
@@ -91,6 +96,23 @@ function getClicksPerSecond(powerUps) {
     }
 
     return clicks
+}
+
+function minimizeNumber(num){
+    if(num >= 1000 && num < 100_000)
+    {
+        return (num / 1000).toFixed(1)+'K'
+    } 
+    else if(num >= 1_000_000 && num < 1_000_000_000)
+    {
+        return num / 1_000_000 + 'M'
+    }
+    else if(num >= 1_000_000_000 && num < 1_000_000_000_000)
+    {
+        return num / 1_000_000_000 + 'B'
+    } else {
+        return num
+    }
 }
 
 game()
