@@ -74,6 +74,7 @@ function updateShopPrices() {
         index++;
     }
     priceIncrementExpoent += 0.2
+    priceIncrementExpoent = parseFloat(priceIncrementExpoent.toFixed(1))
 }
 
 
