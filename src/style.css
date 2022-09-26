@@ -79,6 +79,8 @@ div#space {
 }
 
 div#info {
+    font-family: monospace;
+    font-size: 11pt;
     display: flex;
     visibility: hidden;
     flex-direction: column;
@@ -86,12 +88,17 @@ div#info {
     position: absolute;
     left: 0;
     top: 0;
-    color: #fafafa;
+    color: #00fa00;
     border: 1px solid #dddddd;
     padding: 10px;
     height: 200px;
     width: 200px;
-    background: #0000aa;
+    background: #000000;
+}
+
+div#info span#description::after {
+    content: '';
+    animation: digit 1s infinite;
 }
 
 span#clicks {
@@ -131,6 +138,15 @@ button#moon {
     100% {
         background-position-x: 400px;
         background-position-y: 485px;
+    }
+}
+
+@keyframes digit {
+    0% {
+        content: "_";
+    }
+    100% {
+        content: "";
     }
 }
 
