@@ -3,6 +3,18 @@ const clicksPerSecondText = document.querySelector('span#clicks')
 const shopItems = document.querySelectorAll('div.item button')
 const shopPrices = document.querySelectorAll('div.item span#price')
 const popUp = document.querySelector("div#info")
+const newsElement = document.querySelector('div#news p')
+
+let news = ['People are saying someone is mining the moon', 
+            'Images from earth shows a stranger walking in moon',
+            'Undestand how gain money with moon mining',
+            'Who are writing this news?',
+            'Support the game adding more news and features :)',
+            'The moon is made of cheese?',
+            'Why are so many holes there?',
+            'Astroneers are working together for help the stranger',
+            'Cientists are researching ways to gain more money with the moon'
+        ]
 
 let powerUpList = [
     {
@@ -59,7 +71,7 @@ function buyItem(item, score)
 {
     let powerUpPrice = powerUps[item][2]
     if(score >= powerUpPrice) {
-        score -= powerUpPrice
+        score -= parseInt(powerUpPrice)
         powerUps[item][0] += 1
         clicksPerSecond = getClicksPerSecond(powerUps)
         clicksPerSecondText.textContent = minimizeNumber(clicksPerSecond) + ' CPS'
@@ -69,22 +81,35 @@ function buyItem(item, score)
 }
 
 function updateShopPrices() {
-    
     let index = 0
     let price = parseInt(priceIncrementExpoent)
     for(powerUp of powerUpList) {
-        powerUps[powerUp.key][2] += parseInt(price / 100 * powerUps[powerUp.key][2])
-        shopPrices[index].textContent = minimizeNumber(powerUps[powerUp.key][2])
+        powerUps[powerUp.key][2] += parseFloat(price / 100 * powerUps[powerUp.key][2])
+        powerUps[powerUp.key][2] = parseFloat(powerUps[powerUp.key][2].toFixed(1))
+        shopPrices[index].textContent = minimizeNumber(parseInt(powerUps[powerUp.key][2]))
         index++;
     }
     priceIncrementExpoent += 0.1
     priceIncrementExpoent = parseFloat(priceIncrementExpoent.toFixed(1))
 }
 
-
+let sec = 9000
 function game(){
     score += clicksPerSecond
     moon.textContent = minimizeNumber(score)
+    if(sec == 9000) {
+        sec = 0
+        let newsIndex = news.length - 2;
+        if(powerUps.astroneer[0] > 0)
+        {
+            newsIndex++
+        }
+        if(powerUps.cientist[0] > 0) {
+            newsIndex++
+        }
+        newsElement.textContent = news[Math.floor(Math.random() * newsIndex)]
+    }
+    sec += 1000
     window.setTimeout(game, 1000)
 }
 
