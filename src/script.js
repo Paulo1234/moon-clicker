@@ -61,6 +61,7 @@ for(let i =0; i < shopItems.length; i++) {
         popUp.style.visibility = 'visible'
         popUp.children[0].textContent = powerUpList[i].name
         popUp.children[1].textContent = powerUpList[i].description
+        popUp.children[2].textContent = 'You Have: ' + powerUps[powerUpList[i].key][0]
     })
     shopItems[i].addEventListener('mouseleave', () => {
         popUp.style.visibility = 'hidden'

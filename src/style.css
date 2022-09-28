@@ -97,6 +97,12 @@ div#info {
     background: #000000;
 }
 
+div#info span#count {
+    font-size: 11pt;
+    position: absolute;
+    bottom: 5px;
+}
+
 div#info span#description::after {
     content: '';
     animation: digit 1s infinite;
