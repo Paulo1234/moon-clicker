@@ -12,6 +12,7 @@ body {
     align-items: center;
     background-color: black;
     font-family: Arial, sans-serif;
+    overflow: hidden;
 }
 
 div#menu {
@@ -76,7 +77,6 @@ div#space {
     background-repeat: repeat;
     animation: parallax 30s infinite;
     animation-timing-function: linear;
-    overflow: hidden;
 }
 
 div#info {
@@ -186,6 +186,6 @@ div#news p {
         transform: translateX(-1200px);
     }
     100% {
-        transform: translateX(1200px);
+        transform: translateX(100%);
     }
 }

@@ -93,11 +93,11 @@ function updateShopPrices() {
     priceIncrementExpoent = parseFloat(priceIncrementExpoent.toFixed(1))
 }
 
-let sec = 9000
+let sec = 10000
 function game(){
     score += clicksPerSecond
     moon.textContent = minimizeNumber(score)
-    if(sec == 9000) {
+    if(sec == 10000) {
         sec = 0
         let newsIndex = news.length - 2;
         if(powerUps.astroneer[0] > 0)
