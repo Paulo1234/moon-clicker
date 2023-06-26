@@ -33,14 +33,19 @@ let powerUpList = [
         key: 'cientist',
         name: 'Cientist',
         description: 'A smart cientist that improves moon exploration, adding 20 CPS'
+    }, {
+        key: 'robot',
+        name: 'Robot',
+        description: 'A robot trained to learn how to find more ores. Add 30 CPS'
     }
 ]
 
 const powerUps = {
     auto_click: [0, 1, 10],
-    astroneer: [0, 5, 100],
-    cientist: [0, 20, 500],
-    powerful_click: [0, 0, 50],
+    powerful_click: [0, 0, 100],
+    astroneer: [0, 5, 200],
+    cientist: [0, 20, 600],
+    robot: [0, 30, 1500],
 }
 let score = 0;
 let clicksPerSecond = 0
@@ -76,6 +81,7 @@ function buyItem(item, score)
         powerUps[item][0] += 1
         clicksPerSecond = getClicksPerSecond(powerUps)
         clicksPerSecondText.textContent = minimizeNumber(clicksPerSecond) + ' CPS'
+        popUp.children[2].textContent = 'You Have: ' + powerUps[item][0]
         updateShopPrices()
     }
     return score
@@ -140,5 +146,4 @@ function minimizeNumber(num){
         return num
     }
 }
-
 game()
